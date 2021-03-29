@@ -1,0 +1,194 @@
+body {
+    background-color: #abc;
+}
+div.row {
+    width: 360;
+    height: 80;
+}
+div.board {
+    width: 360;
+    height: 360;
+    position: fixed;
+    left: 32%;
+}
+div.words {
+    width: 240px;
+    height: 0px;
+    position: fixed;
+    left: 2%;
+    background-color: #eee;
+}
+div.timer {
+    text-align: center;
+    font-weight: bold;
+    font-size: 48;
+    font-family: Lucida Sans Unicode, Lucida Grande, sans-serif;
+    width: 240px;
+    height: 80px;
+    position: fixed;
+    right: 2%;
+    background-color:#eee;
+    float: left;
+    transition: 0.25s;
+    text-decoration: none;
+    line-height: 80px;
+    color: #002937;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin: 3px;}
+div.scorebox {
+    text-align: center;
+    font-weight: bold;
+    font-size: 48;
+    font-family: Lucida Sans Unicode, Lucida Grande, sans-serif;
+    width: 240px;
+    height: 80px;
+    position: fixed;
+    top:12%;
+    right: 2%;
+    background-color:#eee;
+    float: left;
+    transition: 0.25s;
+    text-decoration: none;
+    line-height: 80px;
+    color: #002937;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin: 3px;}
+div.word {
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+    font-family: Lucida Sans Unicode, Lucida Grande, sans-serif;
+    width: 240px;
+    height: 20px;
+    background-color:rgba(0,0,0,0);
+    float: left;
+    transition: 0.25s;
+    text-decoration: none;
+    line-height: 20px;
+    color: #002937;
+    padding-bottom:6px;
+}
+div.word.text {
+    width:208;
+    height: 20px;
+    background-color: #eee;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin: 3px;
+    padding-bottom:0;
+}
+div.word.score {
+    width:20;
+    height: 20px;
+    background-color: #eee;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin: 3px;
+    padding-bottom:0;
+}
+
+
+div.tile {
+    text-align: center;
+    font-weight: bold;
+    font-size: 48px;
+    font-family: Lucida Sans Unicode, Lucida Grande, sans-serif;
+    width: 80px;
+    height: 80px;
+    background-color: #eee;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin: 5px;
+    float: left;
+    transition: 0.25s;
+    text-decoration: none;
+    line-height: 88px;
+    color: #002937;
+ }
+ div.tile5 {
+    text-align: center;
+    font-weight: bold;
+    font-size: 40px;
+    font-family: Lucida Sans Unicode, Lucida Grande, sans-serif;
+    width: 64px;
+    height: 64px;
+    background-color: #eee;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin: 4px;
+    float: left;
+    transition: 0.25s;
+    text-decoration: none;
+    line-height: 70px;
+    color: #002937;
+ }
+ div.textbox {
+    background-color: #eee;
+    width: 360;
+    height: 48;
+    position: fixed;
+    top: 66%;
+    left: 32%;
+    text-align: center;
+    font-weight: bold;
+    transition: 0.16s;
+    font-size: 32px;
+    font-family: Lucida Sans Unicode, Lucida Grande, sans-serif;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    text-decoration: none;
+    color: #002937;
+}
+div.howto {
+    background-color: #eee;
+    width: 640px;
+    height: 640px;
+    position: fixed;
+    top: 8%;
+    left: 32%;
+    text-align: justify;
+    font-weight: bold;
+    transition: 0.16s;
+    font-size: 32px;
+    font-family: Lucida Sans Unicode, Lucida Grande, sans-serif;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    text-decoration: none;
+    color: #002937;
+    
+}
+div.howtoinner{
+    width: 608px;
+    height: 608px;
+    margin: 16px;    
+}
+div.linkbox {
+    background-color: #eee;
+    width: 640;
+    height: 128;
+    position: fixed;
+    left: 32%;
+    top:80%;
+}
+div.link {
+    border-style: solid;
+    border-width:2px;
+    border-color:#eee;
+    text-align: center;
+    font-weight: bold;
+    font-size: 48px;
+    font-family: Lucida Sans Unicode, Lucida Grande, sans-serif;
+    width: 295.95;
+    height: 104;
+    background-color: #eee;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin: 10px;
+    float: left;
+    transition: 0.25s;
+    text-decoration: none;
+    line-height: 100px;
+    color: #002937;
+}
+div.link:hover {
+    margin:2px;
+    width:312px;
+    height:120px;
+    line-height: 116px;
+    background-color: #eff;
+    border-color:#abc;
+
+}

@@ -1,0 +1,193 @@
+<html lang="en" style="scroll-behavior:smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <title>FF</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href=x.css>
+
+</head>
+
+<body>
+    <div class="words" id=0></div>
+    <div class="timer" id=0></div>
+    <div class="scorebox" id=0>0</div>
+    <div class="board">
+        <div class="row" id=0>
+            <div class="tile" id=0></div>
+            <div class="tile" id=1></div>
+            <div class="tile" id=2></div>
+            <div class="tile" id=3></div>
+        </div>
+        <div class="row" id=1>
+            <div class="tile" id=0></div>
+            <div class="tile" id=1></div>
+            <div class="tile" id=2></div>
+            <div class="tile" id=3></div>
+        </div>
+        <div class="row" id=2>
+            <div class="tile" id=0></div>
+            <div class="tile" id=1></div>
+            <div class="tile" id=2></div>
+            <div class="tile" id=3></div>
+        </div>
+        <div class="row" id=3>
+            <div class="tile" id=0></div>
+            <div class="tile" id=1></div>
+            <div class="tile" id=2></div>
+            <div class="tile" id=3></div>
+        </div>
+    </div>
+    <div class="textbox" id=0></div>
+    <script src="words.js"></script>
+    <script>
+        let seconds = 90;
+        let cword='';
+        let kc;
+        let found=[];
+        let tscore=0;
+        let finished=false;
+        textbox=document.getElementsByClassName("textbox")[0];
+        wordbox=document.getElementsByClassName("words")[0];
+        scorebox=document.getElementsByClassName("scorebox")[0];
+        timer=document.getElementsByClassName("timer")[0];
+        window.onkeydown=function(k){
+            kc=k.keyCode;
+            //console.log(k);
+            if (!finished && !k.repeat && !k.ctrlKey){
+                if (kc>64&&kc<91&&cword.replace('QU','Q').length<16){
+                    cword+="ABCDEFGHIJKLMNOPQRSTUVWXYZ"[kc-65];
+                } else if (kc==32 || kc==13){
+                    if (cword.length>2){
+                        if (onBoard(cword)){
+                            if (isWord(cword)){
+                                if (found.indexOf(cword)!=-1){
+                                    colorfadein('#a7f')
+                                } else {
+                                    found=found.concat(cword);
+                                    colorfadein('#5f3')
+                                    addWord(cword);
+                                    wordbox.style.height=26*found.length;
+                                }
+                            } else {
+                                colorfadein('#ff7')
+                            }
+                        } else {
+                            colorfadein('#faa');
+                        }
+                    }
+                    cword='';
+                } else if (kc==8){
+                    if (cword.length<2){
+                        cword='';
+                    } else {
+                        cword=cword.slice(0,-1);
+                    }
+                }
+                textbox.innerHTML=cword;
+            }
+        }
+        function setTile(x,y,t){
+            document.getElementsByClassName("row")[y].children[x].innerHTML=t;
+        }
+        const sz=4;
+        const dice=['AACIOT', 'ABILTY', 'ABJMOQ', 'ACDEMP', 'ACELRS', 'ADENVZ', 'AHMORS', 'BIFORX', 'DENOSW', 'DKNOTU', 'EEFHIY', 'EGKLUY', 'EGINTV', 'EHINPS', 'ELPSTU', 'GILRUW'];
+
+        function shuffle(a) {
+            var j, x, i;
+            for (i = a.length - 1; i > 0; i--) {
+                j = Math.floor(Math.random() * (i + 1));
+                x = a[i];
+                a[i] = a[j];
+                a[j] = x;
+            }
+        return a;
+        }
+        let si=shuffle([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]);
+        let board=[]
+        for (var i=0;i<sz;i++){
+            for (var j=0;j<4;j++){
+                lt=dice[si[i*sz+j]][Math.floor(Math.random()*6)];
+                board=board.concat(lt)
+                setTile(i,j,lt.replace('Q','Qu'));
+            }
+        }
+        function colorfadein(hx){
+            textbox.style.backgroundColor = hx;
+            setTimeout(function(){textbox.style.backgroundColor="#eee"},160)
+        }
+        function onBoard(w){
+            for (let x=0;x<sz;x++){
+                for (let y=0;y<sz;y++){
+                    if (adj(x,y,w.replace('QU','Q'),[])){
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+        function isWord(w){
+            return w.toLowerCase() in words;
+        }
+        function adj(x,y,rem,prev){
+            if (rem==""){
+                return true;
+            }
+            if (prev.indexOf(4*x+y)!=-1){
+                return false;
+            }
+            if (x>=0&&x<sz&&y>=0&&y<sz&&rem[0]==board[x*4+y]){
+                for (let dx=-1;dx<2;dx++){
+                    for (let dy=-1;dy<2;dy++){
+                        if (dx!=0||dy!=0){
+                            if (adj(x+dx,y+dy,rem.slice(1),prev.concat(x*4+y))){
+                                return true;
+                            }
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+        function addWord(w){
+            var wDiv = wordbox.appendChild(document.createElement("div"));
+            wDiv.className="word";
+            var tDiv = wDiv.appendChild(document.createElement("div"));
+            tDiv.className="word text";
+            var sDiv = wDiv.appendChild(document.createElement("div"));
+            sDiv.className="word score";
+            tDiv.innerHTML=w;
+            score=[0,0,0,0,0,1,2,4,10,10,10,10,10,10,10,10,10,10][w.length]+1;
+            sDiv.innerHTML=score;
+            tscore+=score;
+            scorebox.innerHTML=tscore;
+        }
+        var x=setInterval(function(){
+            timer.innerHTML=time(seconds);
+            seconds-=1;
+            if (seconds<0){
+                clearInterval(x);
+                finished=true;
+                textbox.innerHTML="TIME'S UP!";
+            }
+        }, 1000)
+        function time(s){
+            var mins=Math.floor(s/60);
+            var secs=s%60;
+            o="";
+            if (mins<10){
+                o+="0";
+            }
+            o+=mins+":";
+            if (secs<10){
+                o+="0";
+            }
+            o+=secs;
+            return o;
+        }
+    </script>
+
+</body>
+
+</html>

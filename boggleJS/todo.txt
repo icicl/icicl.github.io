@@ -1,0 +1,7 @@
+total score
+replay button
+shortcut to put most recend valid word in textbox
+
+
+scroll on excess words
+pixels, not percents
