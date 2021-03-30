@@ -122,7 +122,7 @@ function addWord(w){
     var sDiv = wDiv.appendChild(document.createElement("div"));
     sDiv.className="word score";
     tDiv.innerHTML=w;
-    score=[0,0,0,0,0,0,1,2,4,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10][w.length]+1;
+    score=[0,0,1,2,4,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10][w.length-sz+1]+1;
     sDiv.innerHTML=score;
     tscore+=score;
     scorebox.innerHTML=tscore;
