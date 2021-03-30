@@ -42,7 +42,7 @@ for (var i=0;i<sz;i++){
     }
 }
 window.onkeydown=function(k){
-    k.preventDefault();
+    //k.preventDefault();
     kc=k.keyCode;
     if (!finished && !k.repeat && !k.ctrlKey){
         if (kc>64&&kc<91&&cword.replace('QU','Q').length<16){
@@ -68,6 +68,7 @@ window.onkeydown=function(k){
             }
             cword='';
         } else if (kc==8){
+            k.preventDefault();
             if (cword.length<2){
                 cword='';
             } else {
@@ -122,7 +123,7 @@ function addWord(w){
     var sDiv = wDiv.appendChild(document.createElement("div"));
     sDiv.className="word score";
     tDiv.innerHTML=w;
-    score=[0,0,1,2,4,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10][w.length-sz+1]+1;
+    score=[1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181, 6765, 10946, 17711, 28657, 46368][w.length-sz+1];
     sDiv.innerHTML=score;
     tscore+=score;
     scorebox.innerHTML=tscore;
