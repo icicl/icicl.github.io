@@ -15,6 +15,7 @@ function resize(){
     boardelement.style.left=(width-360)/2+"px";
 }
 resize();
+textbox.innerHTML='';
 function setTile(x,y,t){
     document.getElementsByClassName("row")[y].children[x].innerHTML=t;
 }
@@ -129,15 +130,18 @@ function addWord(w){
     scorebox.innerHTML=tscore;
 }
 timer.innerHTML=time(seconds);
-var x=setInterval(function(){
+var xxi=setInterval(function(){
     seconds-=1;
-    timer.innerHTML=time(seconds);
+    if (seconds>=-10){
+        timer.innerHTML=time(seconds);
+    }
     if (seconds==0){
-        clearInterval(x);
         finished=true;
         textbox.innerHTML="TIME'S UP!";
+        clearInterval(xxi);
     }
 }, 1000)
+
 function time(s){
     var mins=Math.floor(s/60);
     var secs=s%60;
@@ -153,3 +157,4 @@ function time(s){
     return o;
 }
 window.onresize=function(){resize()};
+//clearInterval(x)

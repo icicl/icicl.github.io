@@ -22,6 +22,7 @@ function getCookie(cname) {
 }
 bkg = getCookie("back");
 txt = getCookie("text");
+doc = getCookie("docc");
 if (bkg == "") {
     bkg = "EEEEEE";
     setCookie("back", "EEEEEE", 66);
@@ -30,9 +31,14 @@ if (txt == "") {
     txt = "002937";
     setCookie("text", "002937", 66);
 }
+if (doc == "") {
+    doc = "abc";
+    setCookie("docc", "7bc", 66);
+}
 
 
 var sheet = document.createElement('style')
-sheet.innerHTML = "div {color: " + txt + "; background-color: " + bkg + ";} div.word.score {background-color:" + bkg + ";} div.word.text {background-color:" + bkg + ";}";
+sheet.innerHTML = "body{background-color: " + doc +";}\ndiv {color: " + txt + "; background-color: " + bkg + ";} div.word.score {background-color:" + bkg + ";} div.word.text {background-color:" + bkg + ";}";
 document.body.appendChild(sheet);
+//body {background-color: #abc;}
 

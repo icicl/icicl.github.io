@@ -45,6 +45,7 @@
         window.onresize = resize();
         colors = ["#036", "#811", "#3b6", "#cd3", "#000", "#888", "#eee", "#8fa", "#bd7"]
         bcolors = ["#eee", "#eee", "#eee", "#eee", "#eee", "#eee", "#364040", "#222", "#222"]
+        dcolors = ["#abc", "#abc", "#abc", "#abc", "#abc", "#abc", "#333", "#222", "#111"]
         for (i = 0; i < 9; i++) {
             document.getElementsByClassName("csel")[i].style.color = colors[i];
             document.getElementsByClassName("csel")[i].style.backgroundColor = bcolors[i];
@@ -52,8 +53,10 @@
         function setc(n) {
             bkg=bcolors[n-1];
             txt=colors[n-1];
+            doc=dcolors[n-1];
             setCookie("text", colors[n - 1], 66);
             setCookie("back", bcolors[n - 1], 66);
+            setCookie("docc", bcolors[n - 1], 66);
             var sheet = document.createElement('style')
             sheet.innerHTML = "div {color: " + txt + "; background-color: " + bkg + ";} div.word.score {background-color:" + bkg + ";} div.word.text {background-color:" + bkg + ";}";
             document.body.appendChild(sheet);

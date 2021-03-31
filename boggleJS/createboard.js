@@ -12,3 +12,7 @@ for (y=0;y<sz;y++){
         t.className="tile";
     }
 }
+width=window.innerWidth;
+document.getElementsByClassName("textbox")[0].style.left=(width-360)/2+"px";
+document.getElementsByClassName("board")[0].style.left=(width-360)/2+"px";
+
