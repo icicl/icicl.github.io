@@ -11,25 +11,34 @@
 
 <body>
 
-    <div class="board">
-        <div class="row">
+    <div class="board" style="width:600px;height:480px;">
+        <div class="row" style="width:600px;height:120px;">
+            <div class="csel" onclick="setc(0)">0</div>
             <div class="csel" onclick="setc(1)">1</div>
             <div class="csel" onclick="setc(2)">2</div>
             <div class="csel" onclick="setc(3)">3</div>
-        </div>
-        <div class="row">
             <div class="csel" onclick="setc(4)">4</div>
+        </div>
+        <div class="row" style="width:600px;height:120px;">
             <div class="csel" onclick="setc(5)">5</div>
             <div class="csel" onclick="setc(6)">6</div>
-        </div>
-        <div class="row">
             <div class="csel" onclick="setc(7)">7</div>
             <div class="csel" onclick="setc(8)">8</div>
             <div class="csel" onclick="setc(9)">9</div>
         </div>
+        <div class="row" style="width:600px;height:120px;">
+        </div>
+        <div class="row" style="width:600px;height:120px;">
+            <div class="csel" onclick="setb(0)"></div>
+            <div class="csel" onclick="setb(1)"></div>
+            <div class="csel" onclick="setb(2)"></div>
+            <div class="csel" onclick="setb(3)"></div>
+            <div class="csel" onclick="setb(4)"></div>
+        </div>
     </div>
-    <div class="linkbox" style="width:360;top:400px">
-        <div class="link" style="font-size:20;width:336" onclick="window.location.href='index.html'">RETURN TO HOMEPAGE</div>
+
+    <div class="linkbox" style="width:360;top:520px">
+        <div class="link" style="font-size:20;width:340" onclick="window.location.href='index.html'">RETURN TO HOMEPAGE</div>
     </div>
     <script src="cookiestuff.js"></script>
     <script>
@@ -38,32 +47,38 @@
         function resize() {
             height = window.innerHeight;
             width = window.innerWidth;
-            board.style.left = (width - 360) / 2 + "px";
+            board.style.left = (width - 600) / 2 + "px";
             linkbox.style.left = (width - 360) / 2 + "px";
         }
         resize();
         window.onresize = resize();
-        colors = ["#036", "#811", "#3b6", "#cd3", "#000", "#888", "#eee", "#8fa", "#bd7"]
-        bcolors = ["#eee", "#eee", "#eee", "#eee", "#eee", "#eee", "#364040", "#222", "#222"]
-        dcolors = ["#abc", "#abc", "#abc", "#abc", "#abc", "#abc", "#333", "#222", "#111"]
-        for (i = 0; i < 9; i++) {
+        colors = ["#036", "#811", "#3b6", "#cd3", "#000", "#888", "#eee", "#8fa", "#bd7", "#925"]
+        bcolors = ["#eee", "#eee", "#eee", "#eee", "#eee", "#eee", "#364040", "#222", "#222", "#181818"]
+        dcolors = ["#abc", "#ddd","#111","#272727","#8da"]
+        for (i = 0; i < 10; i++) {
             document.getElementsByClassName("csel")[i].style.color = colors[i];
             document.getElementsByClassName("csel")[i].style.backgroundColor = bcolors[i];
         }
+        for (i = 0; i < 5; i++) {
+            document.getElementsByClassName("csel")[i+10].style.backgroundColor = dcolors[i];
+        }
         function setc(n) {
-            bkg=bcolors[n-1];
-            txt=colors[n-1];
-            doc=dcolors[n-1];
-            setCookie("text", colors[n - 1], 66);
-            setCookie("back", bcolors[n - 1], 66);
-            setCookie("docc", bcolors[n - 1], 66);
+            bkg=bcolors[n];
+            txt=colors[n];
+            setCookie("text", colors[n], 66);
+            setCookie("back", bcolors[n], 66);
             var sheet = document.createElement('style')
-            sheet.innerHTML = "div {color: " + txt + "; background-color: " + bkg + ";} div.word.score {background-color:" + bkg + ";} div.word.text {background-color:" + bkg + ";}";
+            sheet.innerHTML = "div {color: " + txt + "; background-color: " + bkg + ";} div.word.score {background-color:" + bkg + ";} div.word.text {background-color:" + bkg + ";} div.link {border-color:" + bkg + ";}";
             document.body.appendChild(sheet);
         }
-        var sheet = document.createElement('style')
-            sheet.innerHTML = "div.link:hover {width:352px;}";
+        function setb(n) {
+            doc=dcolors[n];
+            setCookie("docc", dcolors[n], 66);
+            var sheet = document.createElement('style')
+            sheet.innerHTML = "body{background-color: " + doc +";}";
             document.body.appendChild(sheet);
+        }
+
     </script>
 </body>
 
