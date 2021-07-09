@@ -293,6 +293,7 @@ div.link {
     width: 295.95;
     height: 104;
     margin: 10px;
+    position:fixed;
     float: left;
     line-height: 100px;
 }

@@ -25,11 +25,13 @@
     <script>
         howto=document.getElementsByClassName("howto")[0];
         linkbox=document.getElementsByClassName("linkbox")[0];
+        join=document.getElementsByClassName("link")[1];
         function resize(){
             height=window.innerHeight;
             width=window.innerWidth;
             howto.style.left=(width-640)/2+"px";
             linkbox.style.left=(width-640)/2+"px";
+            join.style.left=width/2+"px";
             vm=height-768
             vm=Math.max((vm-Math.min(64,vm/3))/2,0);
             howto.style.top=vm;

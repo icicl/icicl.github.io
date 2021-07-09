@@ -29,6 +29,9 @@ function resize(){
 }
 resize();
 textbox.innerHTML='WAITING...';
+if (host){
+    textbox.innerHTML='[SPACE] TO START';
+}
 
 let peer = new Peer("bog-"+hostS+"-"+uname, {
     debug: 0

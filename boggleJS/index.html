@@ -20,16 +20,22 @@
         <div class="link" id=0 onclick="window.location.href = 'five.html';">PLAY 5x5</div>
         <!-- making element slightly smaller fixes flickering -->
     </div>
+
     <div class="link" style="font-size:20" onclick="window.location.href='setcolors2.html'">CHANGE COLOR SCHEME</div>
+    <div class="link" style="font-size:20" onclick="window.location.href='multiplayer.html'">MULTIPLAYER!!</div>
     <script src="cookiestuff.js"></script>
     <script>
         howto=document.getElementsByClassName("howto")[0];
         linkbox=document.getElementsByClassName("linkbox")[0];
+        multiplayer=document.getElementsByClassName("link")[3];
+        multiplayer.style.right="0px";
+        five=document.getElementsByClassName("link")[1];
         function resize(){
             height=window.innerHeight;
             width=window.innerWidth;
             howto.style.left=(width-640)/2+"px";
             linkbox.style.left=(width-640)/2+"px";
+            five.style.left=width/2+"px";
             vm=height-768
             vm=Math.max((vm-Math.min(64,vm/3))/2,0);
             howto.style.top=vm;
