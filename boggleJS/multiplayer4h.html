@@ -27,7 +27,8 @@
         if (uname==""){
             window.location.href='setuname.html';
         }
-        let seconds = 90;
+        let seconds_ = 90;
+        let seconds;
         let rng_seed=(Math.random()*Date.now())|0;
         let conns=[];
         const host=true;
@@ -41,7 +42,8 @@
     <script src="gamescript_multiplayer.js"></script>
     <script>
         function start_game(){
-            hostSend('GAME_PARAMS',[rng_seed,seconds]);
+            seconds=seconds_;
+            hostSend('GAME_PARAMS',[rng_seed,seconds_]);
             begin(rng_seed);
         }
         window.onkeydown=function(k){

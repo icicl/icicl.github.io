@@ -5,6 +5,12 @@ let tscore=0;
 let finished=false;
 //let rng_seed=3782919//Math.floor(Math.random()*1000000007);
 //let rng=mulberry32(rng_seed);
+let users=[];
+let uwordcounts={};
+let board=[]
+let found_all={}
+let rng;
+
 textbox=document.getElementsByClassName("textbox")[0];
 wordbox=document.getElementsByClassName("words")[0];
 ubox=document.getElementsByClassName("words")[1];
@@ -36,6 +42,47 @@ if (host){
 let peer = new Peer("bog-"+hostS+"-"+uname, {
     debug: 0
 });
+
+function new_game(rng_seed){
+    divs=document.getElementsByTagName('div');
+    while (divs.length>0) divs[0].remove();
+    document.body.innerHTML+='<div class="words"></div><div class="words"><div class="word"><div class="word text">CONNECTED USERS</div><div class="word score">0</div></div></div><div class="timer"></div><div class="scorebox">0</div><div class="board"></div><div class="textbox">LOADING...</div>';
+    cword='';
+    found=[];
+    found_all={};
+    tscore=0;
+    finished=false;
+    uwordcounts={};
+    board=[];
+    textbox=document.getElementsByClassName("textbox")[0];
+    wordbox=document.getElementsByClassName("words")[0];
+    ubox=document.getElementsByClassName("words")[1];
+    ucount=document.getElementsByClassName("word score")[0];
+    scorebox=document.getElementsByClassName("scorebox")[0];
+    timer=document.getElementsByClassName("timer")[0];
+    boardelement=document.getElementsByClassName("board")[0];
+    boardelement.hidden=true;
+    timer.hidden=true;
+    scorebox.hidden=true;
+    for (y=0;y<sz;y++){
+        r=boardelement.appendChild(document.createElement("div"));
+        r.className="row";
+        for (x=0;x<sz;x++){
+            t=r.appendChild(document.createElement("div"));
+            t.style.width=(320/sz)+"px";
+            t.style.height=(320/sz)+"px";
+            t.style.fontSize=(80-8*sz)+"px";
+            t.style.margin=(20/sz)+"px";
+            t.style.lineHeight=(8+320/sz)+"px";
+            t.className="tile";
+        }
+    }
+    resize();
+    if (!host)return;
+    seconds=seconds_;
+    hostSend('REMATCH_PARAMS',[rng_seed,seconds_]);
+    begin(rng_seed, true);
+}
 
 function hostSend(datatype,data=null){
     for (c of conns){
@@ -73,6 +120,10 @@ function peerRecieve([dtype, data]){
         begin(data[0]);
     } else if (dtype=='PEER_DC'){
         rem_user(data);
+    } else if (dtype=='REMATCH_PARAMS'){
+        new_game();
+        seconds=data[1];
+        begin(data[0],true);
     } else if (dtype=='PEER_JOIN'){
         if (data!=uname) add_user(data);
     } else if (dtype=='WORD_COUNT'){
@@ -262,8 +313,6 @@ function time(s){
     return o;
 }
 
-let users=[];
-let uwordcounts={};
 function add_user(name,host='p'){
     users=users.concat(name);
     ucount.innerHTML=users.length;
@@ -298,10 +347,15 @@ function update_word_count(name,count){
 }
 add_user(uname,hostS[0])
 
-let board=[]
-let found_all={}
-let rng;
-function begin(rng_seed){
+function begin(rng_seed, subsequent=false){
+    if (subsequent){
+        users_=users;
+        users=[];
+        for (u of users_){
+            if (u==uname)add_user(u,'h');
+            else add_user(u);
+        }
+    }
     boardelement.hidden=false;
     timer.hidden=false;
     scorebox.hidden=false;
@@ -377,8 +431,7 @@ function begin(rng_seed){
         }
     }, 1000)
 }
-let tt;
-let tt2;
+
 function endgame(){
     divs=document.getElementsByTagName('div');
     while (divs.length>0) divs[0].remove();
@@ -467,8 +520,6 @@ function endgame(){
                                 aa[1].style.backgroundColor='ff6666';
                                 aa[1].childNodes[0].style.backgroundColor='dd9999';
                                 aa[1].childNodes[1].style.backgroundColor='dd9999';
-                                tt=aa;
-                                tt2=uscores;
                             }
                         }
                         if (dw.length==0){
@@ -495,6 +546,21 @@ function endgame(){
             }
         }, 100);
     }
+    if (!host)return;
+    var again=document.body.appendChild(document.createElement("div"));
+    //<div class="link" style="font-size:20" onclick="window.location.href='setuname.html'">SET USERNAME</div>
+    again.className="textbox";
+    again.style.top=height-60+"px";
+    again.style.left=width/2-180+"px";
+    again.innerHTML="[SPACE] TO REMATCH"
+    window.onkeydown=function(k){
+        kc=k.keyCode;
+        if (kc==32 || kc==13){
+            window.onkeydown=null;
+            rng_seed+=42;
+            new_game(rng_seed);
+        }
+    };
     /*for (u in found_all){
         ii+=1;
         udiv=document.body.appendChild(document.createElement("div"));
