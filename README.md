@@ -1,2 +1,2 @@
 ## welcome to boggle JS
-go to icicl.github.io/boggleJS to try it out!
+go to [https://icicl.github.io/boggleJS](https://icicl.github.io/boggleJS) to try it out!
