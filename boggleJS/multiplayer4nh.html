@@ -1,0 +1,46 @@
+<html lang="en" style="scroll-behavior:smooth">
+<head>
+    <meta charset="UTF-8">
+    <title>FF</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href=x.css>
+</head>
+<body>
+    <div class="words"></div>
+    <div class="words">
+        <div class="word">
+            <div class="word text">
+                CONNECTED USERS
+            </div>
+            <div class="word score">
+                0
+            </div>
+        </div>
+    </div>    <div class="timer"></div>
+    <div class="scorebox">0</div>
+    <div class="board"></div>
+    <div class="textbox">LOADING...</div>
+    <div class="textbox">ENTER HOSTNAME</div>
+    <script src="cookiestuff.js"></script>
+    <script>
+        if (uname==""){
+            window.location.href='setuname.html';
+        }
+        let seconds = 9;
+        const host=false;
+        const hostS="peer";
+        let hostc;
+        const sz=4;
+        const dice=['AACIOT', 'ABILTY', 'ABJMOQ', 'ACDEMP', 'ACELRS', 'ADENVZ', 'AHMORS', 'BIFORX', 'DENOSW', 'DKNOTU', 'EEFHIY', 'EGKLUY', 'EGINTV', 'EHINPS', 'ELPSTU', 'GILRUW'];
+    </script>
+    <script src="createboard.js"></script>
+    <script src="words.js"></script>
+    <script src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
+    <script src="gamescript_multiplayer.js"></script>
+    <script>
+//        r=mulberry32(rng_seed)
+//        console.log(r());
+    </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<html lang="en" style="scroll-behavior:smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <title>FF</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href=x.css>
+
+</head>
+
+<body>
+    <div class="howto" id=0>
+        <div class="howtoinner" id=0>
+            <div style="font-size:40px;margin:16px;text-align:center;box-shadow:none;">HOW TO PLAY</div>MAKE WORDS BY CONNECTING HORIZONTALLY, VERTICALLY, AND DIAGONALLY ADJACENT TILES. THE SAME TILE MAY ONLY BE USED ONCE PER WORD. IN 4x4 MODE THE WORDS MUST BE AT LEAST THREE LETTERS LONG, AND IN 5x5 MODE THEY MUST BE AT LEAST FOUR. LONGER WORDS SCORE MOST POINTS. TRY TO SCORE AS MANY POINTS AS YOU CAN BEFORE THE TIMER RUNS OUT!
+        </div>
+    </div>
+    <div class="linkbox" id=0>
+        <div class="link" id=0 onclick="window.location.href = 'multiplayer4h.html';">HOST GAME</div>
+        <div class="link" id=0 onclick="window.location.href = 'multiplayer4nh.html';">JOIN GAME</div>
+        <!-- making element slightly smaller fixes flickering -->
+    </div>
+    <div class="link" style="font-size:20" onclick="window.location.href='setuname.html'">SET USERNAME</div>
+    <script src="cookiestuff.js"></script>
+    <script>
+        howto=document.getElementsByClassName("howto")[0];
+        linkbox=document.getElementsByClassName("linkbox")[0];
+        function resize(){
+            height=window.innerHeight;
+            width=window.innerWidth;
+            howto.style.left=(width-640)/2+"px";
+            linkbox.style.left=(width-640)/2+"px";
+            vm=height-768
+            vm=Math.max((vm-Math.min(64,vm/3))/2,0);
+            howto.style.top=vm;
+            linkbox.style.bottom=vm;
+        }
+        resize();
+        window.onresize=function(){resize()};
+    </script>
+</body>
+
+</html>

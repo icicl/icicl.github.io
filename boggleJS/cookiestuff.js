@@ -3,6 +3,7 @@ function setCookie(cname, cvalue, exdays) {
     d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
     var expires = "expires=" + d.toGMTString();
     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+//    console.log(cname+' '+cvalue);
 }
 
 function getCookie(cname) {
@@ -23,6 +24,7 @@ function getCookie(cname) {
 bkg = getCookie("back");
 txt = getCookie("text");
 doc = getCookie("docc");
+uname=getCookie("uname");
 if (bkg == "") {
     bkg = "EEEEEE";
     setCookie("back", "EEEEEE", 66);
@@ -33,12 +35,12 @@ if (txt == "") {
 }
 if (doc == "") {
     doc = "abc";
-    setCookie("docc", "7bc", 66);
+    setCookie("docc", "abc", 66);
 }
 
 
 var sheet = document.createElement('style')
-sheet.innerHTML = "body{background-color: " + doc +";}\ndiv {color: " + txt + "; background-color: " + bkg + ";} div.word.score {background-color:" + bkg + ";} div.word.text {background-color:" + bkg + ";}";
+sheet.innerHTML = "body{background-color: " + doc +";}\ndiv {color: " + txt + "; background-color: " + bkg + ";} div.word.score {background-color:" + bkg + ";} div.word.text {background-color:" + bkg + ";} div.link {border-color:" + bkg + ";}";
 document.body.appendChild(sheet);
 //body {background-color: #abc;}
 
